@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://www.springframework.org/schema/beans
+													  http://www.springframework.org/schema/beans/spring-beans.xsd">												 
+												 
+     <!-- ㅇ Hello instance 생성 서술적, 선언적 기술
+			ㅇ bean element 및 attribute 
+				- id : instance identifier 
+				- class : instance 생성 Bean (FQCN)     -->
+				
+		
+				
+		<bean id="diceA" class="spring.service.dice.impl.DiceAImpl"/>
+		<bean id="diceB" class="spring.service.dice.impl.DiceBImpl"/>
+		<bean id="diceC" class="spring.service.dice.impl.DiceCImpl"/>
+		<!-- dice A,B,C에 정속 할 수 있도록 필요에 따라 사용-->
+
+
+
+
+		<bean id="player01" class="spring.service.dice.play.Player02">
+		<!-- player01에 접속 하여 정보를 가져올 수 있도록 한다. 필요에 따라 사용 -->
+
+
+		<property name= "dice" >
+		<!-- 필드 dice에 있는 value selected를 가져와서 사용할 수있다 -->
+		<ref bean= "diceA"/>
+		<!--  -->
+		</property>
+		</bean>
+		
+		<bean id="player02" class="spring.service.dice.play.Player02">
+
+
+		<property name= "dice" ref= "diceB" />
+		</bean>		
+		
+		<bean id="player03" class="spring.service.dice.play.Player02">
+
+		<constructor-arg>
+			<ref bean= "diceC" />
+		</constructor-arg>
+	
+		</bean>		
+		
+				
+		<bean id="player04" class="spring.service.dice.play.Player02">
+
+		<constructor-arg ref="diceA"/>
+		</bean>		
+
+
+</beans>
